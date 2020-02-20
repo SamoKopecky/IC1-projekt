@@ -1,0 +1,1 @@
+javaw -jar tika-server-1.16.jar
