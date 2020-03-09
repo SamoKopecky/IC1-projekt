@@ -3,9 +3,28 @@ import sys
 sys.path.insert(1, '../')
 from virtual_cmd.communication import User as user
 
-# example netsh advfirewall firewall add rule name="Open Port 80" dir=in action=allow protocol=TCP localport=80
 
-user = user.use_user('send')
-command = input("enter command : ")
-user.send_data(command)
-print(user.receive_data())
+class Client:
+    def __init__(self):
+        self.server_current_directory = ''
+        self.communication = user.use_user('send')
+
+    def input_command(self):
+        sent_command = input('enter command : ')
+        self.communication.send_data(sent_command)
+        print(self.communication.receive_data())
+        if sent_command.__contains__('cd'):
+            self.sync_server_directory()
+
+    def sync_server_directory(self):
+        self.server_current_directory = self.communication.receive_data()
+
+
+def main_loop():
+    client = Client()
+    client.sync_server_directory()
+    while True:
+        client.input_command()
+
+
+main_loop()
