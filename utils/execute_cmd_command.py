@@ -15,7 +15,7 @@ def convert_into_list(given_command: str):
         given_command = given_command.replace(cmd, replace_string)
     commands = given_command.split(" ")
     for i in range(len(commands_with_space)):
-        commands_with_space[i] = commands_with_space[i].replace('\"', '\'')
+        commands_with_space[i] = commands_with_space[i].replace('\"', "")
         regex_element = "regex:{}".format(i)
         commands.insert(commands.index(regex_element), commands_with_space[i])
         commands.remove(regex_element)
@@ -24,9 +24,9 @@ def convert_into_list(given_command: str):
 
 def run_command(command):
     list_of_commands = convert_into_list(command)
-    return subprocess.run(list_of_commands).returncode
+    return subprocess.run(list_of_commands, shell=True).returncode
 
 
 def input_command():
     list_of_commands = convert_into_list(input("Enter command : "))
-    print(subprocess.run(list_of_commands).returncode)
+    print(subprocess.run(list_of_commands, shell=True).returncode)
