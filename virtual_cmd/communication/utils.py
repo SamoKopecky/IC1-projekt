@@ -64,7 +64,6 @@ def finish_connection(active_socket):
     """
     active_socket.send(b'fin')
     wait_for_acknowledgement(active_socket)
-    print('ending communication\n')
     active_socket.close()
 
 
@@ -155,7 +154,6 @@ def send_data(user_socket, data, string):
         :param data: data to send
         :param string: what the host is sending
     """
-    print('sending: {}'.format(string))
     length = len(data)
     if length > 2048:
         send_big_data(user_socket, data, length)
@@ -171,7 +169,6 @@ def receive_data(user_socket, string):
         :param string: what is the host receiving
         :return: returns the received data
     """
-    print('receiving: {}'.format(string))
     data = receive_small_data(user_socket)
     if data[:3] == b'len':
         data = receive_big_data(user_socket, int(data[3:]))
@@ -224,7 +221,6 @@ def rsa_verify_certificate(trusted_certificate, untrusted_certificate):
         :param untrusted_certificate: certificate to verify
     """
     try:
-        print('verifying certificate ...')
         trusted_certificate.public_key().verify(
             untrusted_certificate.signature,
             untrusted_certificate.tbs_certificate_bytes,
@@ -234,7 +230,6 @@ def rsa_verify_certificate(trusted_certificate, untrusted_certificate):
     except InvalidSignature:
         print('verification failed exiting program')
         sys.exit()
-    print('verification successful')
 
 
 def aes_encrypt(cipher, data: bytes):

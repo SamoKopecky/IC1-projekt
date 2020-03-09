@@ -67,7 +67,6 @@ class User:
             utils.finish_connection(self.active_socket)
             self.send_request_to_ca()
             return
-        print('CSR was verified successfully')
         self.my_certificate = utils.x509.load_pem_x509_certificate(received_data, utils.default_backend())
         utils.finish_connection(self.active_socket)
 
@@ -108,7 +107,6 @@ class User:
         utils.send_data(ca_socket, b'requesting your self-signed certificate', 'request for self-signed certificate')
         data = utils.receive_data(ca_socket, 'ca certificate')
         self.ca_certificate = utils.x509.load_pem_x509_certificate(data, utils.default_backend())
-        print('ready to verify self-signed certificate')
         utils.rsa_verify_certificate(self.ca_certificate, self.ca_certificate)
         utils.finish_connection(ca_socket)
 
@@ -119,9 +117,7 @@ class User:
         """
         key = utils.receive_data(self.active_socket, 'encrypted aes key')
         self.aes_iv = utils.receive_data(self.active_socket, 'aes iv')
-        print('decrypting aes key ...')
         self.aes_key = utils.rsa_decrypt(key, self.private_key)
-        print('decrypted aes key:\n{a_k}'.format(a_k=base64.b64encode(self.aes_key)))
 
     def start_exchange_of_certificates(self):
         """
@@ -146,12 +142,8 @@ class User:
             iv is 16 bytes long and can be sent in plain text
         """
         self.aes_key, self.aes_iv = os.urandom(32), os.urandom(16)
-        print('generated aes key is: {a_k}'.format(a_k=base64.b64encode(self.aes_key)))
-        print('generated initializing vector is: {a_iv}'.format(a_iv=base64.b64encode(self.aes_iv)))
         other_public_key = self.other_certificate.public_key()
         data_to_send = utils.rsa_encrypt(self.aes_key, other_public_key)
-        print('encrypting the aes key with other users public key, encrypted key:\n{s_k}'.format(
-            s_k=base64.b64encode(data_to_send)))
         utils.send_data(self.active_socket, data_to_send, 'encrypted aes key')
         utils.send_data(self.active_socket, self.aes_iv, 'aes iv')
 
@@ -161,7 +153,6 @@ class User:
         """
         if self.aes_key is None or self.aes_iv is None:
             raise ValueError('null value')
-        print('creating aes cipher ...')
         self.cipher = Cipher(algorithms.AES(self.aes_key),
                              modes.CBC(self.aes_iv),
                              utils.default_backend()
@@ -173,9 +164,7 @@ class User:
         """
         if input_data[:5] == 'file:':
             input_data = utils.read_file(input_data[5:])
-        print('encrypting message ...')
         c_message = utils.aes_encrypt(self.cipher, bytes(input_data, 'utf-8'))
-        print('encrypted message: \n{c_m}'.format(c_m=base64.b64encode(c_message)))
         utils.send_data(self.active_socket, c_message, 'encrypted message')
 
     def receive_data(self):
@@ -184,8 +173,6 @@ class User:
             in list of received message or a file
         """
         c_message = utils.receive_data(self.active_socket, 'encrypted message')
-        print('received encrypted message:\n{c_m}'.format(c_m=base64.b64encode(c_message)))
-        print('decrypting message ...\n')
         message = utils.aes_decrypt(self.cipher, c_message)
         return message.decode()
 
@@ -197,7 +184,6 @@ def use_user(state):
     user = User()
     user.send_request_to_ca()
     user.get_ca_certificate()
-    print('ready to verify my certificate')
     utils.rsa_verify_certificate(user.ca_certificate, user.my_certificate)
     user.exchange_certificates_and_keys(state)
     return user
