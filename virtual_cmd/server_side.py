@@ -22,6 +22,7 @@ class Server:
             directories = re.findall("cd .*;?", received_command)
             for directory in directories:
                 os.chdir(directory[3:])
+            self.current_directory = os.getcwd()
             self.sync_my_directory()
 
     def sync_my_directory(self):

@@ -10,7 +10,7 @@ class Client:
         self.communication = user.use_user('send')
 
     def input_command(self):
-        sent_command = input('enter command : ')
+        sent_command = input(self.server_current_directory + '>')
         self.communication.send_data(sent_command)
         print(self.communication.receive_data())
         if sent_command.__contains__('cd'):
