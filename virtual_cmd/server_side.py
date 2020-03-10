@@ -9,8 +9,9 @@ from virtual_cmd.communication import User as user
 
 class Server:
     def __init__(self):
+        self.communication = user.User(sys.argv[1], sys.argv[2])
         self.current_directory = os.getcwd()
-        self.communication = user.use_user('receive')
+        self.communication.use_user('receive')
 
     def receive_command(self):
         received_command = self.communication.receive_data()

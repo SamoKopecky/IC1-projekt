@@ -2,7 +2,6 @@ from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 
 import os
 import sys
-import base64
 import uuid
 
 sys.path.insert(1, "../../")
@@ -11,7 +10,7 @@ from virtual_cmd.communication import utils
 
 class User:
 
-    def __init__(self):
+    def __init__(self, ca_ip_addr, user_ip_addr):
         """
             Creating variables to store things in later in the code, or initializing them right away
             other_* = variables of the other user we are communicating with
@@ -28,8 +27,8 @@ class User:
         self.ca_port = 3333
         self.user_port = 4444
         self.name = str(uuid.uuid1())
-        self.ca_ip_addr = input("choose an ip address of your CA : ")
-        self.user_ip_addr = input("choose an ip address of your other user : ")
+        self.ca_ip_addr = ca_ip_addr
+        self.user_ip_addr = user_ip_addr
         self.received_messages = []
 
     def create_certificate_request(self):
@@ -176,14 +175,11 @@ class User:
         message = utils.aes_decrypt(self.cipher, c_message)
         return message.decode()
 
-
-def use_user(state):
-    """
-        first function that is ran when User.py is ran
-    """
-    user = User()
-    user.send_request_to_ca()
-    user.get_ca_certificate()
-    utils.rsa_verify_certificate(user.ca_certificate, user.my_certificate)
-    user.exchange_certificates_and_keys(state)
-    return user
+    def use_user(self, state):
+        """
+            first function that is ran when User.py is ran
+        """
+        self.send_request_to_ca()
+        self.get_ca_certificate()
+        utils.rsa_verify_certificate(self.ca_certificate, self.my_certificate)
+        self.exchange_certificates_and_keys(state)

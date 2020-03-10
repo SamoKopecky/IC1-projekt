@@ -6,8 +6,10 @@ from virtual_cmd.communication import User as user
 
 class Client:
     def __init__(self):
+        self.communication = user.User(input("choose an ip address of your CA : "),
+                                       input("choose an ip address of your server : "))
         self.server_current_directory = ''
-        self.communication = user.use_user('send')
+        self.communication.use_user('send')
 
     def input_command(self):
         sent_command = input(self.server_current_directory + '>')
