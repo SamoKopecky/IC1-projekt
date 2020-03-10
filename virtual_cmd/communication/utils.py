@@ -13,8 +13,6 @@ import socket
 import sys
 
 # constants
-CA_PORT = 3333
-LOCALHOST = '127.0.0.1'
 PEM = serialization.Encoding.PEM
 
 

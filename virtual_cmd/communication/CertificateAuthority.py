@@ -21,7 +21,7 @@ def fill_certificate_name():
     ])
 
 
-class CA:
+class CertificateAuthority:
     def __init__(self):
         """
             generating of RSA keys for CA and outputting the self signed certificate to a file
@@ -118,15 +118,15 @@ class CA:
         utils.send_data(self.connection, pem_public_key, 'self-signed certificate')
 
 
-def use_ca():
+def use_certificate_authority():
     """
-        first function to run when CA.py is ran and before we start the infinite loop we
+        first function to run when CertificateAuthority.py is ran and before we start the infinite loop we
         get the the port to listen to for the rest of the runtime so we don't have to enter
         it every time
     """
-    ca = CA()
+    certificate_authority = CertificateAuthority()
     while True:
-        ca.start_listening()
+        certificate_authority.start_listening()
 
 
-use_ca()
+use_certificate_authority()
