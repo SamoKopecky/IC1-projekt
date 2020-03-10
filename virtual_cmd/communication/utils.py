@@ -79,7 +79,7 @@ def start_receiving(port):
     """
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-    server_socket.bind((LOCALHOST, port))
+    server_socket.bind(('0.0.0.0', port))
     print('listening on port: {}'.format(port))
     server_socket.listen()
     connection, address = server_socket.accept()
