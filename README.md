@@ -2,7 +2,7 @@
 
 ## Obsah repozitara
 V repozitary su 3 zlozky :
-### Build
+### build
 Tu sa nachadza iba subor `build.bat` ktory zkompiluje vsetky zdrojaky do 4 exe suborov :
 1. **client_side** - cast virtualneho terminalu ktora sa spusta na klientovy (utocnik) ked uz boli otvorene porty pomocou exploitu.
 2. **server_side** - cast virtualneho terminalu ktora sa spusta na servery ma 2 argumenty *[ip_addr_ca, ip_addr_client]*. 
