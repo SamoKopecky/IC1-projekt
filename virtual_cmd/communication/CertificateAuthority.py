@@ -30,7 +30,6 @@ class CertificateAuthority:
         self.ss_certificate = self.create_self_signed_certificate()
         self.connection = socket.socket()
         self.list_of_certs = []
-        self.port = int
         self.port = 3333
 
     def create_certificate_from_request(self, request: utils.x509.CertificateSigningRequest):
