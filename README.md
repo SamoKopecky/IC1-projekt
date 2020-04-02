@@ -1,5 +1,4 @@
 # IC1-projekt
-
 ## Obsah repozitara
 V repozitary su 3 zlozky :
 ### build
@@ -25,22 +24,22 @@ V tejto zlozke su zdrojove kody pre sifrovanu komunikaciu v zlozke `communicatio
     - vsetky oblasti 
     - meno : tika_server_allow  
 - prikazom : `java -jar tika-server-1.16.jar -h [ip_addresa_servera]`
-- funckionalitu je potreba vyskat tak ze na utocnikovej strane si ovtvorime prehliadac a "*ip_addresa_server*:9998"
+- funckionalitu je potreba vyskat tak ze na utocnikovej strane si ovtvorime prehliadac a `ip_addresa_server:9998`
 - na utocnikovej strane je potrebne vypnut windows defender a windows firewall
 - ako prove si musime stiahnut potrebne subory, v subore `commands_list.txt` sa nachadazju linky na 3. potrebne .exe subory 
     -   `exploit.exe`
     -   `client_side.exe`
     -   `CertificateAuthority.exe`
-- exploit.exe je potrebne spustit na utocnikovej strane v cmd z pravami administratora
+- `exploit.exe` je potrebne spustit na utocnikovej strane v cmd z pravami administratora
 - po zadani IP adresy je mozne zadavat prikazy zo suboru commands_list a to prve dve : 
     -   `netsh advfirewall firewall add rule name="Allow port 3333" dir=in action=allow protocol=TCP localport=3333`
     -   `netsh advfirewall firewall add rule name="Allow port 4444" dir=in action=allow protocol=TCP localport=4444`
-- dalej je potrebne spustit CertificateAuthority.exe v novom terminaly z administrativnimy pravami
+- dalej je potrebne spustit `CertificateAuthority.exe` v novom terminaly z administrativnimy pravami
 - v terminaly kde je spusteny exploit.exe je potrebne stiahnut subor `server_side.exe` na stranu servera prikaz na stiahnutie je v subore `commands_list.txt`
-- tento subor nasledovne stiahneme z prikazom `server_side.exe [ip_adresa_certifikacne_autority] [ip_adresa_klienta]`
-- potom spustime na klientovy subor client_side.exe a zvolime ip adresu CA *(localhost v tomto pripade)* a serveru
+- tento subor nasledovne spustime z prikazom `server_side.exe [ip_adresa_certifikacne_autority] [ip_adresa_klienta]`
+- potom spustime na klientovy subor `client_side.exe` a zvolime ip adresu `CA(127.0.0.1)` a `ip_addresa_servera`
 - ak vsetko prebehlo ako malu virtualne cmd je inicializovane a je mozne sa pohybovat v adresarovej strukture servera a zadavat prikazy a ziskat aj output tychto prikazov
-- dalej je mozne si stiahnut subor `disturb_system.bat` pomocou prikazu v `commands_list.txt` ktory rusit beh systemu po starte
+- dalej je mozne si stiahnut subor `disturb_system.bat` pomocou prikazu v `commands_list.txt` ktory bude rusit beh systemu po starte
 
 ## Struktura navodu
 1. zprovoznit tika server na serveri
