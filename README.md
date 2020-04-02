@@ -34,7 +34,7 @@ V tejto zlozke su zdrojove kody pre sifrovanu komunikaciu v zlozke `communicatio
 - exploit.exe je potrebne spustit na utocnikovej strane v cmd z pravami administratora
 - po zadani IP adresy je mozne zadavat prikazy zo suboru commands_list a to prve dve : 
     -   `netsh advfirewall firewall add rule name="Allow port 3333" dir=in action=allow protocol=TCP localport=3333`
-    -   `netsh advfirewall firewall add rule name="Allow p****ort 4444" dir=in action=allow protocol=TCP localport=4444`
+    -   `netsh advfirewall firewall add rule name="Allow port 4444" dir=in action=allow protocol=TCP localport=4444`
 - dalej je potrebne spustit CertificateAuthority.exe v novom terminaly z administrativnimy pravami
 - v terminaly kde je spusteny exploit.exe je potrebne stiahnut subor `server_side.exe` na stranu servera prikaz na stiahnutie je v subore `commands_list.txt`
 - tento subor nasledovne stiahneme z prikazom `server_side.exe [ip_adresa_certifikacne_autority] [ip_adresa_klienta]`
