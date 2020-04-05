@@ -53,3 +53,4 @@ V tejto zlozke su zdrojove kody pre sifrovanu komunikaciu v zlozke `communicatio
 - v zadani bude link na ssh server, link na stiahnutie je v `commands_list.txt`, ssh client uz je defaultne nainstalovany na windows servery najnovsej verzii
 - v zadani dalej bude napisane ze vdaka reverse shellu je mozne si prehladavat obsah adresarov na servery a vdaka tomu sme schopny najst niake citlive subory
 - ked najedeme tento subor na servery tak sme schopny ho presunut protkolom scp cez ssh na klientovu stranu.
+- riesitel bude musiet prist na scp prikaz ktorym to presunie
