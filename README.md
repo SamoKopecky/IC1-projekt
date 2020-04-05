@@ -47,4 +47,9 @@ V tejto zlozke su zdrojove kody pre sifrovanu komunikaciu v zlozke `communicatio
 3. nastavit firewall pravidla cez prikazy na serveri prostrednictvom exploitu
 4. spustenie reverse shellu
 5. ukazka prikazov vymazanie suborov, vypis adresaru servera v terminalu klienta cez reverse shell 
-6. samostatna uloha prenos niakeho suboru z jedneho pocitaca na druhy (to este musim vymisliet ako tak to potom doplnim ja)
+6. samostatna uloha prenos niakeho suboru z jedneho pocitaca na druhy
+
+## Samostatna uloha
+- v zadani bude link na ssh server, link na stiahnutie je v `commands_list.txt`, ssh client uz je defaultne nainstalovany na windows servery najnovsej verzii
+- v zadani dalej bude napisane ze vdaka reverse shellu je mozne si prehladavat obsah adresarov na servery a vdaka tomu sme schopny najst niake citlive subory
+- ked najedeme tento subor na servery tak sme schopny ho presunut protkolom scp cez ssh na klientovu stranu.
