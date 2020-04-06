@@ -22,7 +22,11 @@ class Server:
         if received_command.__contains__('cd'):
             directories = re.findall("cd .*;?", received_command)
             for directory in directories:
-                os.chdir(directory[3:])
+                directory = re.sub('\s+', '', directory[3:])
+                try:
+                    os.chdir(directory)
+                except FileNotFoundError:
+                    pass
             self.current_directory = os.getcwd()
             self.sync_my_directory()
 
