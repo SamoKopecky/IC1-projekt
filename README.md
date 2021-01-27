@@ -1,4 +1,4 @@
-# IC1-projekt
+# ICT1-projekt
 ## Obsah repozitara
 V repozitary su 3 zlozky :
 ### build
