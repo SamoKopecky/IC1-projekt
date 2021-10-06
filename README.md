@@ -1,5 +1,5 @@
 # ICT1-projekt
-- school project for createing a reverse shell with the help of an exploit in apache tika server
+- school project for creating a reverse shell with the help of an exploit in apache tika server
 ## Obsah repozitara
 V repozitary su 3 zlozky :
 ### build
